@@ -1,0 +1,483 @@
+Write an assembly program that will read a character from the keyboard and display it 4 at the beginning of the next line
+
+
+.model small
+.stack 100h
+.data
+msg db 3
+msg1 db ?
+.code
+main proc
+    mov ax, @data
+    mov ds, ax
+    
+    
+    
+    
+    mov ah, 1
+    int 21h
+    mov msg1,al
+    
+    mov ah, 2
+    mov dl,10
+    int 21h
+    mov dl, 13
+    int 21h
+    
+    mov ah,2
+    mov dl,msg1
+    int 21h
+    
+    
+    exit:
+    mov ah, 4ch
+    int 21h
+    main endp
+end main
+
+
+String concept
+
+.model small
+.stack 100h
+.data
+m db 'I Love Bangladesh $'
+
+
+.code
+main proc   
+    
+    
+    mov ax, @data
+    mov ds, ax
+    
+     
+    mov ah,9
+    lea dx,m
+    int 21h
+    
+    mov ah,1
+    int 21h
+    mov bl,al
+    
+    mov ah, 2
+    mov dl,bl    
+     int 21h
+    
+    
+    
+    exit:
+    mov ah, 4ch
+    int 21h
+    main endp
+end main
+
+
+NEW Line and beep
+
+.model small
+.stack 100h
+.code
+main proc   
+    
+      
+    mov ah,1
+    int 21h
+    mov bl,al
+    
+    mov ah, 2
+    mov dl,10
+    int 21h
+    mov dl,13
+    int 21h
+    
+    mov ah,1
+    int 21h
+    mov bh,al
+    
+    mov ah,2
+    mov dl,bl
+    int 21h
+    
+    mov ah,2
+    mov dl,10
+    int 21h
+    mov dl,13
+    int 21h
+    
+    mov ah,2
+    mov dl,bh
+    int 21h
+    
+    mov ah,2
+    mov dl,07
+    int 21h
+    
+    
+    
+    exit:
+    mov ah, 4ch
+    int 21h
+    main endp
+end main
+
+
+Loop Concept
+
+
+.model small
+.stack 100h
+.data
+a db 'loop concept $'
+.code
+main proc 
+    
+    mov ax,@data
+    mov ds,ax
+    
+    mov ah,9
+    lea dx, a
+    int 21h
+    
+    mov ah,2
+    mov dl,10
+    int 21h
+    mov dl,13
+    int 21h
+    
+    
+    mov cx,26
+    mov ah,2
+    mov dl,'A'
+    
+    
+    level1:
+    int 21h
+    inc dl
+    loop level1
+    
+      
+    
+      
+   
+    
+    
+    
+    exit:
+    mov ah, 4ch
+    int 21h
+    main endp
+end main
+
+
+
+Jump concept
+
+
+.model small
+.stack 100h
+.data
+a db 'JMP concept $'
+b db 'Assembly language $'
+c db 'Programming $'
+.code
+main proc 
+    
+    mov ax, @data
+    mov ds,ax
+    
+    mov ah,9
+    lea dx,a
+    int 21h
+    
+    mov ah,2
+    mov dl,10
+    int 21h
+    mov dl,13
+    int 21h
+    
+    m:
+    mov ah,9
+    lea dx,b
+    int 21h
+    jmp n
+    
+    n:
+    mov ah,9
+    lea dx,c
+    int 21h
+    jmp exit
+    
+  
+    
+    
+    exit:
+    mov ah, 4ch
+    int 21h
+    main endp
+end main
+
+
+ADDITION
+
+.model small
+.stack 100h
+.data
+a db 'Input First Digit $'
+b db 'Input Second Digit $'
+c db 'Result $'
+.code
+main proc  
+    
+    mov ax,@data
+    mov ds, ax
+    
+    mov ah,9
+    lea dx,a
+    int 21h
+    
+    mov ah,1
+    int 21h
+    mov bl,al 
+    
+    mov ah,9
+    lea dx,b
+    int 21h
+    
+    mov ah,1
+    int 21h
+    mov bh,al
+    
+    mov ah,9
+    lea dx,c
+    int 21h
+    
+    add bl,bh
+    sub bl,48
+    mov ah, 2
+    mov dl,bl
+    int 21h
+           
+           
+        
+    
+    exit:
+    mov ah, 4ch
+    int 21h
+    main endp
+end main
+
+
+
+Subtraction
+
+.model small
+.stack 100h
+.data
+a db 'Input First Digit $'
+b db 10,13, 'Input Second Digit $'
+c db 10,13, 'Result $'
+.code
+main proc  
+    
+    mov ax,@data
+    mov ds, ax
+    
+    mov ah,9
+    lea dx,a
+    int 21h
+    
+    mov ah,1
+    int 21h
+    mov bl,al 
+    
+    mov ah,9
+    lea dx,b
+    int 21h
+    
+    mov ah,1
+    int 21h
+    mov bh,al
+    
+    mov ah,9
+    lea dx,c
+    int 21h
+    
+    sub bl,bh
+    add bl,48
+    mov ah, 2
+    mov dl,bl
+    int 21h
+           
+           
+        
+    
+    exit:
+    mov ah, 4ch
+    int 21h
+    main endp
+end main
+
+
+ADD Three Number
+
+.model small
+.stack 100h
+.data
+msg db ?
+.code
+main proc  
+    
+        
+    mov ah,1
+    int 21h
+    mov bl,al 
+    
+        
+    mov ah,1
+    int 21h
+    mov bh,al 
+    
+    mov ah,1
+    int 21h
+    mov cl,al
+    
+    
+    
+    add bl,bh
+    sub bl,48
+    mov ch,bl
+    add ch,cl
+    sub ch,48
+    mov msg,ch
+    
+    mov ah,2
+    mov dl,msg
+    int 21h
+    
+           
+           
+        
+    
+    exit:
+    mov ah, 4ch
+    int 21h
+    main endp
+end main
+
+
+Lower case to upper case
+
+.model small
+.stack 100h
+.data
+a db 'Lower form $'
+b db 'upper form $'
+.code
+main proc
+    
+    mov ax, @data
+    mov ds,ax
+    
+    mov ah,9
+    lea dx,a
+    int 21h
+    
+    
+    mov ah,1
+    int 21h
+    mov bl,al
+    
+    mov ah,2
+    mov dl,10
+    int 21h
+    mov dl,13
+    int 21h 
+    
+    mov ah,9
+    lea dx,b
+    int 21h
+    
+    mov ah, 2
+    sub bl,32
+    mov dl,bl
+    int 21h  
+    
+        
+  
+           
+           
+        
+    
+    exit:
+    mov ah, 4ch
+    int 21h
+    main endp
+end main
+
+
+Biggest between two input
+
+.model small
+.stack 100h
+.data
+a db 'Input two number $'
+b db 10,13, 'Largest number $'
+.code
+main proc
+    
+    mov ax, @data
+    mov ds,ax
+    
+    mov ah,9
+    lea dx,a
+    int 21h
+    
+    
+    mov ah,1
+    int 21h
+    mov bl,al
+    int 21h
+    mov bh,al
+    
+    biggest:
+    cmp bl,bh
+    jg l1
+    jmp l2
+    
+    l2:
+    mov ah,9
+    lea dx,b
+    int 21h
+    
+    mov ah,2
+    mov dl,bh
+    int 21h
+    jmp exit
+    
+    l1: 
+    mov ah,9
+    lea dx,b
+    int 21h
+    
+    mov ah,2
+    mov dl,bl
+    int 21h
+    jmp exit
+   
+    
+        
+  
+           
+           
+        
+    
+    exit:
+    mov ah, 4ch
+    int 21h
+    main endp
+end main
+
+
+
+
